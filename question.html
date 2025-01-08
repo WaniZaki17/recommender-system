@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Style Test</title>
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .apply-now {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+            border: 2px solid rgb(29, 53, 159);
+        }
+
+        table th {
+            width: 60%;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        input[type="radio"] {
+            margin: 0 5px;
+        }
+
+        .question-item {
+            border: 2px solid transparent;
+            padding: 10px;
+        }
+
+        .unanswered {
+            border-color: red;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .clear-btn {
+            background-color: gray;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: darkgreen;
+        }
+
+        .clear-btn:hover {
+            background-color: darkgray;
+        }
+
+        #warning {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Section Start -->
+    <section class="apply-now" id="apply">
+        <div class="container">
+            <h2>Discover Your Unique Learning Style!</h2>
+            <p>Curious about how you learn best? Find out if you're a Visual, Auditory, or Kinesthetic learner with our quick and easy test!</p>
+
+            <form id="learningStyleForm" action="learningcontent.php" method="POST">
+                <!-- Start of Question Table -->
+                <table>
+                    <tr class="question-item">
+                        <th>1. Do you prefer using diagrams and charts to explain information?</th>
+                        <td><input type="radio" name="q1" value="1"> Yes <input type="radio" name="q1" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>2. Do you find it easier to remember information by seeing it written down?</th>
+                        <td><input type="radio" name="q2" value="1"> Yes <input type="radio" name="q2" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>3. Do you prefer learning through visual aids like videos or slides?</th>
+                        <td><input type="radio" name="q3" value="1"> Yes <input type="radio" name="q3" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>4. Do you find it easier to learn when information is presented visually?</th>
+                        <td><input type="radio" name="q4" value="1"> Yes <input type="radio" name="q4" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>5. Do you find it easier to remember things when you can visualize them?</th>
+                        <td><input type="radio" name="q5" value="1"> Yes <input type="radio" name="q5" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>6. Do you prefer to listen to lectures rather than reading textbooks?</th>
+                        <td><input type="radio" name="q6" value="1"> Yes <input type="radio" name="q6" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>7. Do you find it easier to focus when listening to music or sounds?</th>
+                        <td><input type="radio" name="q7" value="1"> Yes <input type="radio" name="q7" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>8. Do you enjoy talking about your learning experiences with others?</th>
+                        <td><input type="radio" name="q8" value="1"> Yes <input type="radio" name="q8" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>9. Do you prefer listening to someone explain instructions rather than reading them?</th>
+                        <td><input type="radio" name="q9" value="1"> Yes <input type="radio" name="q9" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>10. Do you enjoy learning through listening to discussions or lectures?</th>
+                        <td><input type="radio" name="q10" value="1"> Yes <input type="radio" name="q10" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>11. Do you enjoy learning by doing hands-on activities or experiments?</th>
+                        <td><input type="radio" name="q11" value="1"> Yes <input type="radio" name="q11" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>12. Do you find it easier to remember a location or a route through physical interaction?</th>
+                        <td><input type="radio" name="q12" value="1"> Yes <input type="radio" name="q12" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>13. Do you prefer learning through hands-on experiences rather than abstract concepts?</th>
+                        <td><input type="radio" name="q13" value="1"> Yes <input type="radio" name="q13" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>14. Do you enjoy physical activities like sports or dancing to learn?</th>
+                        <td><input type="radio" name="q14" value="1"> Yes <input type="radio" name="q14" value="0"> No</td>
+                    </tr>
+                    <tr class="question-item">
+                        <th>15. Do you prefer using your hands or physical objects to learn?</th>
+                        <td><input type="radio" name="q15" value="1"> Yes <input type="radio" name="q15" value="0"> No</td>
+                    </tr>
+                </table>
+                <!-- End of Question Table -->
+
+                <!-- Warning Message -->
+                <div id="warning">Please fill in all questions before submitting.</div>
+
+                <div id="warning">Please fill in all questions before submitting.</div>
+
+                <!-- Buttons -->
+                <div class="button-container">
+                    <button type="button" class="clear-btn" id="clear-btn">Clear</button>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#learningStyleForm').submit(function(e) {
+                e.preventDefault();
+
+                // Clear any existing red borders and warnings
+                $('.question-item').removeClass('unanswered');
+                $('#warning').hide();
+
+                // Check if all questions are answered
+                let unanswered = false;
+                $('input[type="radio"]').each(function() {
+                    if (!$('input[name="' + $(this).attr('name') + '"]:checked').length) {
+                        unanswered = true;
+                        $(this).closest('.question-item').addClass('unanswered');
+                    }
+                });
+
+                if (unanswered) {
+                    // Show warning if any questions are unanswered
+                    $('#warning').show();
+                    return;
+                }
+
+                // Proceed with form submission and redirect
+                this.submit();
+            });
+
+            // Clear button functionality
+            $('#clear-btn').click(function() {
+                $('input[type="radio"]').prop('checked', false);
+                $('#warning').hide();
+            });
+        });
+    </script>
+</body>
+</html>
+
+

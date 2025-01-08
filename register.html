@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Account</title>
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            background-image: url('path_to_your_image.jpg'); /* Add your image path here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .register-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(244, 244, 244, 0.8); /* Slight overlay for readability */
+            width: 100%;
+        }
+
+        .form-box {
+            width: 40%;
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background-color: darkgreen;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: green;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <div class="form-box">
+            <h2>Register Account</h2>
+            <form id="registerForm" action="register_process.php" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div id="error-message">This username already exists. Please choose a different one.</div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+            <a href="login.html" class="login-link">Already Have an Account?</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const form = new FormData(this);  // Collect form data
+            
+            try {
+                const response = await fetch('register_process.php', {
+                    method: 'POST',
+                    body: form
+                });
+    
+                const result = await response.text();
+                console.log(result); // Log the server response for debugging
+    
+                // Handle server responses
+                if (result === 'exists') {
+                    document.getElementById('error-message').style.display = 'block';
+                } else if (result === 'success') {
+                    alert('Registration successful!');
+                    window.location.href = 'login.php';
+                } else {
+                    alert('An error occurred. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error during fetch:', error); // Log any errors
+                alert('An error occurred during the form submission.');
+            }
+        });
+    </script>
+    
+</body>
+</html>
