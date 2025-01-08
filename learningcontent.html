@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Content</title>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+        /* General Styles */
+        .resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .resource-box {
+            width: 48%;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .resource-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .resource-box {
+                width: 100%;
+            }
+        }
+
+        .resource-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .resource-box p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .resource-box a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .resource-box a:hover {
+            text-decoration: underline;
+        }
+
+        .learning-style-container {
+            background-color: #3498db;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .content-box {
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="learning-content">
+        <div class="container">
+            <div id="learningStyleContainer" class="learning-style-container" style="display:none;"></div>
+            <div id="contentBox" class="content-box" style="display:none;">
+                <h3>Here are learning contents suitable for your learning style(s):</h3>
+                <div id="resources" class="resources"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Sample answers array (replace with form data or dynamic data if needed)
+        const answers = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0]; // Example answers (1 = Yes, 0 = No)
+
+        function calculateLearningStyle(answers) {
+            const visualQuestions = [0, 1, 2, 3, 4];
+            const auditoryQuestions = [5, 6, 7, 8, 9];
+            const kinestheticQuestions = [10, 11, 12, 13, 14];
+
+            let visualScore = 0, auditoryScore = 0, kinestheticScore = 0;
+
+            visualQuestions.forEach(q => visualScore += answers[q]);
+            auditoryQuestions.forEach(q => auditoryScore += answers[q]);
+            kinestheticQuestions.forEach(q => kinestheticScore += answers[q]);
+
+            const maxScore = Math.max(visualScore, auditoryScore, kinestheticScore);
+            const learningStyles = [];
+            if (visualScore === maxScore) learningStyles.push("Visual");
+            if (auditoryScore === maxScore) learningStyles.push("Auditory");
+            if (kinestheticScore === maxScore) learningStyles.push("Kinesthetic");
+
+            return learningStyles;
+        }
+
+        function displayLearningStyle(learningStyles) {
+            const learningStyleContainer = document.getElementById("learningStyleContainer");
+            const contentBox = document.getElementById("contentBox");
+            const resources = document.getElementById("resources");
+
+            if (learningStyles.length > 0) {
+                learningStyleContainer.style.display = "block";
+                learningStyleContainer.innerHTML = `<h2>You are a ${learningStyles.join(" and ")} learner.</h2>`;
+
+                contentBox.style.display = "block";
+                resources.innerHTML = "";
+
+                if (learningStyles.includes("Visual")) {
+                    resources.innerHTML += `
+                        <div class='resource-box'>
+                            <img src='assets/images/visualcontent1.png' alt='Complete Coding for Beginners Course'>
+                            <p><a href='https://www.udemy.com/course/the-complete-coding-for-beginners-course/?couponCode=NEWYEARCAREER'>The Complete Coding for Beginners Course</a></p>
+                        </div>
+                        <div class='resource-box'>
+                            <img src='assets/images/visualcontent2.png' alt='Data Visualization Slides'>
+                            <p><a href='https://www.slideshare.net/slideshow/data-visualizationpptx/251731745'>Data Visualization Slides</a></p>
+                        </div>`;
+                }
+
+                if (learningStyles.includes("Auditory")) {
+                    resources.innerHTML += `
+                        <div class='resource-box'>
+                            <img src='assets/images/auditorycontent1.png' alt='Podcast on Auditory Learning Techniques'>
+                            <p><a href='https://www.audible.com/pd/The-AI-in-Business-Advantage-Audiobook/B0DQ65S2Y5'>The AI in Business Advantage Audiobook</a></p>
+                        </div>
+                        <div class='resource-box'>
+                            <img src='assets/images/auditorycontent2.png' alt='Data Analytics Audio Book'>
+                            <p><a href='https://www.audible.com/pd/Data-Analytics-Data-Visualization-Communicating-Data-3-books-in-1-Audiobook/B0BPD38KDP'>Data Analytics Audiobook</a></p>
+                        </div>`;
+                }
+
+                if (learningStyles.includes("Kinesthetic")) {
+                    resources.innerHTML += `
+                        <div class='resource-box'>
+                            <img src='assets/images/kinestheticcontent1.png' alt='Practice Coding'>
+                            <p><a href='https://codefinity.com/start/cpp'>Practice Coding on Codefinity</a></p>
+                        </div>
+                        <div class='resource-box'>
+                            <img src='assets/images/kinestheticcontent2.png' alt='Learn Python Programming'>
+                            <p><a href='https://www.codechef.com/learn/course/python'>Learn Python Programming on CodeChef</a></p>
+                        </div>`;
+                }
+            }
+        }
+
+        const learningStyles = calculateLearningStyle(answers);
+        displayLearningStyle(learningStyles);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
