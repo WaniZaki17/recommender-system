@@ -92,10 +92,11 @@
         </div>
     </section>
 
-    <script>
-        // Sample answers array (replace with form data or dynamic data if needed)
-        const answers = [1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0]; // Example answers (1 = Yes, 0 = No)
+  <script>
+    // Retrieve the answers from localStorage
+    const answers = JSON.parse(localStorage.getItem("learningStyleAnswers"));
 
+    if (answers) {
         function calculateLearningStyle(answers) {
             const visualQuestions = [0, 1, 2, 3, 4];
             const auditoryQuestions = [5, 6, 7, 8, 9];
@@ -103,9 +104,9 @@
 
             let visualScore = 0, auditoryScore = 0, kinestheticScore = 0;
 
-            visualQuestions.forEach(q => visualScore += answers[q]);
-            auditoryQuestions.forEach(q => auditoryScore += answers[q]);
-            kinestheticQuestions.forEach(q => kinestheticScore += answers[q]);
+            visualQuestions.forEach(q => visualScore += parseInt(answers[q]));
+            auditoryQuestions.forEach(q => auditoryScore += parseInt(answers[q]));
+            kinestheticQuestions.forEach(q => kinestheticScore += parseInt(answers[q]));
 
             const maxScore = Math.max(visualScore, auditoryScore, kinestheticScore);
             const learningStyles = [];
@@ -168,7 +169,12 @@
 
         const learningStyles = calculateLearningStyle(answers);
         displayLearningStyle(learningStyles);
-    </script>
+    } else {
+        // If no answers are found in localStorage, redirect back to question.html
+        window.location.href = "question.html";
+    }
+</script>
+
 </body>
 </html>
 
