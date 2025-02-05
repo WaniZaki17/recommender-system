@@ -200,47 +200,46 @@
         </div>
     </section>
 
-   <script>
-    $(document).ready(function() {
-        $('#learningStyleForm').submit(function(e) {
-            e.preventDefault();
+   $(document).ready(function() {
+    $('#learningStyleForm').submit(function(e) {
+        e.preventDefault(); // Prevent default form submission
 
-            // Clear any existing red borders and warnings
-            $('.question-item').removeClass('unanswered');
-            $('#warning').hide();
+        // Clear any existing red borders and warnings
+        $('.question-item').removeClass('unanswered');
+        $('#warning').hide();
 
-            // Check if all questions are answered
-            let unanswered = false;
-            let answers = [];
-            $('input[type="radio"]').each(function() {
-                if ($('input[name="' + $(this).attr('name') + '"]:checked').length) {
-                    answers.push($('input[name="' + $(this).attr('name') + '"]:checked').val());
-                } else {
-                    unanswered = true;
-                    $(this).closest('.question-item').addClass('unanswered');
-                }
-            });
-
-            if (unanswered) {
-                // Show warning if any questions are unanswered
-                $('#warning').show();
-                return;
+        // Check if all questions are answered
+        let unanswered = false;
+        let answers = [];
+        $('input[type="radio"]').each(function() {
+            if ($('input[name="' + $(this).attr('name') + '"]:checked').length) {
+                answers.push($('input[name="' + $(this).attr('name') + '"]:checked').val());
+            } else {
+                unanswered = true;
+                $(this).closest('.question-item').addClass('unanswered');
             }
-
-            // Store the answers in localStorage
-            localStorage.setItem("learningStyleAnswers", JSON.stringify(answers));
-
-            // Redirect to learningcontent.html
-            window.location.href = "learningcontent.html";
         });
 
-        // Clear button functionality
-        $('#clear-btn').click(function() {
-            $('input[type="radio"]').prop('checked', false);
-            $('#warning').hide();
-        });
+        if (unanswered) {
+            // Show warning if any questions are unanswered
+            $('#warning').show();
+            return;
+        }
+
+        // Store the answers in localStorage
+        localStorage.setItem("learningStyleAnswers", JSON.stringify(answers));
+
+        // Redirect to learningcontent.html
+        window.location.href = "learningcontent.html";
     });
-</script>
+
+    // Clear button functionality
+    $('#clear-btn').click(function() {
+        $('input[type="radio"]').prop('checked', false);
+        $('#warning').hide();
+    });
+});
+
 
 </body>
 </html>
