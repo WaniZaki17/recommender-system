@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Content</title>
+
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+
+    <style>
+        /* General Styles */
+        .resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .resource-box {
+            width: 48%;
+            background-color: #f7f7f7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .resource-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background-color: #e0e0e0;
+        }
+
+        @media (max-width: 768px) {
+            .resource-box {
+                width: 100%;
+            }
+        }
+
+        .resource-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .resource-box p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .resource-box a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .resource-box a:hover {
+            text-decoration: underline;
+        }
+
+        .learning-style-container {
+            background-color: #3498db;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .content-box {
+            border: 2px solid #3498db;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <section class="learning-content">
+        <div class="container">
+            <div id="learningStyleContainer" class="learning-style-container" style="display:none;"></div>
+            <div id="contentBox" class="content-box" style="display:none;">
+                <h3>Here are learning contents suitable for your learning style(s):</h3>
+                <div id="resources" class="resources"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample simple form to redirect to learningcontentvisual.html -->
+    <form action="learningcontentvisual.html" method="POST">
+        <input type="submit" value="Go to Learning Content">
+    </form>
+
+</body>
+</html>
+
