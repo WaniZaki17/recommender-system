@@ -120,7 +120,7 @@
             <h2>Discover Your Unique Learning Style!</h2>
             <p>Curious about how you learn best? Find out if you're a Visual, Auditory, or Kinesthetic learner with our quick and easy test!</p>
 
-             <form id="learningStyleForm">
+            <form id="learningStyleForm" action="learningcontentvisual.html" method="get">
                 <!-- Start of Question Table -->
                 <table>
                     <tr class="question-item">
@@ -194,43 +194,6 @@
             </form>
         </div>
     </section>
-
-
-<script>
-    $(document).ready(function() {
-        $('#learningStyleForm').submit(function(e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Clear any existing red borders and warnings
-            $('.question-item').removeClass('unanswered');
-            $('#warning').hide();
-
-            // Check if all questions are answered
-            let unanswered = false;
-            $('input[type="radio"]').each(function() {
-                if (!$('input[name="' + $(this).attr('name') + '"]:checked').length) {
-                    unanswered = true;
-                    $(this).closest('.question-item').addClass('unanswered');
-                }
-            });
-
-            if (unanswered) {
-                // Show warning if any questions are unanswered
-                $('#warning').show();
-                return;
-            }
-
-            // Redirect to learningcontentvisual.html
-            window.location.href = "learningcontentvisual.html";
-        });
-
-        // Clear button functionality
-        $('#clear-btn').click(function() {
-            $('input[type="radio"]').prop('checked', false);
-        });
-    });
-</script>
-
 </body>
 </html>
 
