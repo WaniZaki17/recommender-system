@@ -120,7 +120,7 @@
             <h2>Discover Your Unique Learning Style!</h2>
             <p>Curious about how you learn best? Find out if you're a Visual, Auditory, or Kinesthetic learner with our quick and easy test!</p>
 
-           <form id="learningStyleForm" action="learningcontent.html" method="POST">
+           <form id="learningStyleForm" action="learningcontentvisual.html" method="POST">
                 <!-- Start of Question Table -->
                 <table>
                     <tr class="question-item">
@@ -186,11 +186,6 @@
                 </table>
                 <!-- End of Question Table -->
 
-                <!-- Warning Message -->
-                <div id="warning">Please fill in all questions before submitting.</div>
-
-                <div id="warning">Please fill in all questions before submitting.</div>
-
                 <!-- Buttons -->
                 <div class="button-container">
                     <button type="button" class="clear-btn" id="clear-btn">Clear</button>
@@ -199,48 +194,18 @@
             </form>
         </div>
     </section>
+
 <script>
-   $(document).ready(function() {
-    $('#learningStyleForm').submit(function(e) {
-        e.preventDefault(); // Prevent default form submission
-
-        // Clear any existing red borders and warnings
-        $('.question-item').removeClass('unanswered');
-        $('#warning').hide();
-
-        // Check if all questions are answered
-        let unanswered = false;
-        let answers = [];
-        $('input[type="radio"]').each(function() {
-            if ($('input[name="' + $(this).attr('name') + '"]:checked').length) {
-                answers.push($('input[name="' + $(this).attr('name') + '"]:checked').val());
-            } else {
-                unanswered = true;
-                $(this).closest('.question-item').addClass('unanswered');
-            }
+    $(document).ready(function() {
+        // Clear button functionality
+        $('#clear-btn').click(function() {
+            $('input[type="radio"]').prop('checked', false);
         });
-
-        if (unanswered) {
-            // Show warning if any questions are unanswered
-            $('#warning').show();
-            return;
-        }
-
-       
-
-        // Redirect to learningcontent.html
-        window.location.href = "learningcontentvisual.html";
     });
-
-    // Clear button functionality
-    $('#clear-btn').click(function() {
-        $('input[type="radio"]').prop('checked', false);
-        $('#warning').hide();
-    });
-});
 </script>
 
 </body>
 </html>
+
 
 
